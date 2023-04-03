@@ -1,0 +1,38 @@
+ <?xml version="1.0" encoding="utf-8"?>
+<html>
+  <head>
+    <title>Expand base64-encoded HTML</title>
+    <meta charset="UTF-8" />
+    <style>
+      #input {
+        width: 120em;
+	height: 60ex;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" name="text" action="https://www.base64decode.org/" data-dashlane-rid="38f3d7a5e2ef24db" data-form-type="">
+      <textarea name="input" id="input" placeholder="Type (or paste) here..." spellcheck="false" data-form-type=""></textarea>
+    </form>
+    <div id="output"></div>
+    <script>
+      const input = document.getElementById('input')
+      const convert = () => {
+	const value = input.value
+	let output = ''
+	if(value === '') {
+	  output.innerHTML = ''
+	} else {
+	  try {
+	    const converted = decodeURIComponent(escape(window.atob(value)))
+	    document.getElementById('output').innerHTML = converted
+	  } catch (e) {
+	    console.log(e)
+	  }
+        }
+      }
+      input.addEventListener('input', convert, false)
+      window.addEventListener('load', convert)
+    </script>
+  </body>
+</html>
